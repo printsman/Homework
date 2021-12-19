@@ -1,0 +1,21 @@
+/*
+Какова вероятность того, что 13 число заданного месяца окажется пятницей? 
+Определите количество пятниц, пришедшихся на 13-е числа в XX столетии.
+*/
+#include <iostream>
+
+int main(){
+    int d, day = 13, count = 0;
+    for(int year = 1901; year <  2001; ++year){
+        for(int m = 1; m <=12; ++m){
+            int a = (14 - m) / 12, m = (m + 12 * a - 2), y;
+            y = year - a;
+            d = (day + y + y/4 + y/400 - y/100 + 31*m/12) % 7;
+            if (d == 5) {
+                std::cout << "Year = " << year << "\t Month = " << m <<'\n';
+                ++count;
+            }
+        }
+    }
+    std::cout << count;
+}
