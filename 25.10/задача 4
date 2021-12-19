@@ -1,0 +1,271 @@
+/*
+Составьте программу, читающую целое положительное число, не превышающее миллиард, и выводящее это же число на естественном языке.
+Входные данные: 1024.
+Выход: одна тысяча двадцать четыре.
+*/
+#include <iostream>
+#include <string>
+int f_1(int num, bool b = 1);
+int f_10(int num, bool b = 1);
+int f_100(int num, bool b = 1);
+void tog(int num);
+
+
+
+int main(){
+    srand(time(nullptr));
+    int num;
+    std::cout<<"Введите число: ";
+    std::cin >> num;
+    if(num < 0){
+        std::cout << "минус ";
+        num = -num;
+    }
+    tog(num);
+    std::cout<<'\n';
+}
+
+
+
+int f_1(int num, bool b){
+    switch(num){
+        case 0:
+            std::cout<<"ноль ";
+            break;
+        case 1:{
+            std::string one = b ? "один ":"одна ";
+            std::cout<<one;
+            break;}
+        case 2:{
+            std::string two = b ? "два ":"две ";
+            std::cout<<two;
+            break;}
+        case 3:{
+            std::cout<<"три ";
+            break;}
+        case 4:
+            std::cout<<"четыре ";
+            break;
+        case 5:
+            std::cout<<"пять ";
+            break;
+        case 6:
+            std::cout<<"шесть ";
+            break;
+        case 7:
+            std::cout<<"семь ";
+            break;
+        case 8:
+            std::cout<<"восемь ";
+            break;
+        case 9:
+            std::cout<<"девять ";
+            break;
+    }
+    return num;
+}
+int f_10(int num, bool b){
+    if (num == 0) {
+        return 0;
+    }
+    switch(num){
+        case 10:
+            std::cout<<"десять ";
+            break;
+        case 11:
+            std::cout<<"одиннадцать ";
+            break;
+        case 12:
+            std::cout<<"двенадцать ";
+            break;
+        case 13:
+            std::cout<<"тринадцать ";
+            break;
+        case 14:
+            std::cout<<"четырнадцать ";
+            break;
+        case 15:
+            std::cout<<"пятнадцать ";
+            break;
+        case 16:
+            std::cout<<"шестнадцать ";
+            break;
+        case 17:
+            std::cout<<"семнадцать ";
+            break;
+        case 18:
+            std::cout<<"восемнадцать ";
+            break;
+        case 19:
+            std::cout<<"девятнадцать ";
+            break;
+    }
+    if (num >= 90){
+        std::cout <<"девяносто ";
+    }
+    else if (num >= 80){
+        std::cout <<"восемьдесят ";
+    }
+    else if (num >= 70){
+        std::cout << "семьдесят ";
+    }
+    else if (num >= 60){
+        std::cout << "шестьдесят ";
+    }
+    else if (num >= 50){
+        std::cout << "пятьдесят ";
+    }
+    else if (num >= 40){
+        std::cout << "сорок ";
+    }
+    else if (num >= 30){
+        std::cout << "тридцать ";
+    }
+    else if (num >= 20){
+        std::cout << "двадцать ";
+    };
+    if(num % 10 != 0 && num / 10 != 1){
+        return f_1(num % 10, b);
+    }
+    else return 0;
+}
+int f_100(int num, bool b){
+    if(num >= 900){
+        std::cout<<"девятьсот ";
+    }
+    else if(num >= 800){
+        std::cout<<"восемьсот ";
+    }
+    else if(num >= 700){
+        std::cout<<"семьсот ";
+    }
+    else if(num >= 600){
+        std::cout<<"шестьсот ";
+    }
+    else if(num >= 500){
+        std::cout<<"пятьсот ";
+    }
+    else if(num >= 400){
+        std::cout<<"четыреста ";
+    }
+    else if(num >= 300){
+        std::cout<<"тристо ";
+    }
+
+    else if(num >= 200){
+        std::cout<<"двести ";
+    }
+    else if(num >= 100){
+        std::cout<<"сто ";
+    };
+
+    if(num % 100 != 0){
+        return(f_10(num%100, b));
+    }
+    else return 0;
+}
+
+void tog(int num){
+    if (num == 0){
+        std::cout << "ноль ";
+    }
+    int num1 = num, amount_of_digits = 0;
+    while(num1 > 0){
+        num1 /= 10;
+        ++amount_of_digits;
+    }
+    while(amount_of_digits != 0){
+        switch(amount_of_digits) {
+            case 9:{
+                int form = f_100((num / 1000000));
+                if (form < 5 && form > 1){
+                    std::cout << "миллиона ";
+                }
+                else if (form == 1){
+                    std::cout << "миллион ";
+                }
+                else{
+                    std::cout << "миллионов ";
+                }
+                num %= 1000000;
+                amount_of_digits -= 3;
+                break;}
+            case 8:{
+                int form = f_100((num / 1000000));
+                if (form < 5 && form > 1){
+                    std::cout << "миллиона ";
+                }
+                else if (form == 1){
+                    std::cout << "миллион ";
+                }
+                else{
+                    std::cout << "миллионов ";
+                }
+                num %= 1000000;
+                amount_of_digits -= 2;
+                break;}
+            case 7:{
+                int form = f_100((num / 1000000));
+                if (form < 5 && form > 1){
+                    std::cout << "миллиона ";
+                }
+                else if (form == 1){
+                    std::cout << "миллион ";
+                }
+                else{
+                    std::cout << "миллионов ";
+                }
+                num %= 1000000;
+                amount_of_digits -= 1;
+                break;}
+            case 6:{
+                if (num/1000 != 0){
+                int form = f_100((num / 1000), 0);
+                if (form < 5 && form > 1){
+                    std::cout << "тысячи ";
+                }
+                else if(form == 1){
+                    std::cout<<"тысяча ";
+                }
+                else{
+                    std::cout << "тысяч ";
+                }
+                num %= 1000;}
+                amount_of_digits -= 3;
+                break;}
+            case 5:{
+                int form = f_100((num / 1000), 0);
+                if (form < 5 && form > 1){
+                    std::cout << "тысячи ";
+                }
+                else if(form == 1){
+                    std::cout<<"тысяча ";
+                }
+                else{
+                    std::cout << "тысяч ";
+                }
+                num %= 1000;
+                amount_of_digits -= 2;
+                break;}
+            case 4:{
+                int form = f_100((num / 1000), 0);
+                if (form < 5 && form > 1){
+                    std::cout << "тысячи ";
+                }
+                else if(form == 1){
+                    std::cout<<"тысяча ";
+                }
+                else{
+                    std::cout << "тысяч ";
+                }
+                num %= 1000;
+                amount_of_digits -= 1;
+                break;}
+            default:{
+                f_100(num);
+                amount_of_digits = 0;
+                break;
+            }
+        }
+    }
+}
