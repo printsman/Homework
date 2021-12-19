@@ -1,0 +1,35 @@
+/*
+Является ли строка, переданная в качестве аргумента скрипта, палиндромом? 
+Палиндром — слово или фраза, которые одинаково читаются слева направо и справо налево.
+*/
+#include <iostream>
+#include <string>
+
+int main()
+{   
+    std::string phr, phr0;
+    std::cout<<"input phrase or word:";
+    std::getline(std::cin,phr);
+    phr0=phr;
+    for (int i=0; i<phr.size(); ++i){
+        if (phr[i]==' '){
+            phr.erase(i, 1);
+        }
+    }
+    int error=0;
+    for (int i=0; i<phr.size(); ++i){
+        error= (phr[i]==phr[phr.size()-1-i]) ? 0:1;
+        
+        if (error==1){
+            std::cout<<"This is not palindrome"<<std::endl;
+            break;
+        }  
+        }
+    if (error==0){
+            std::cout<<"This is palindrome!"<<std::endl;
+}
+    std::cout<<"phr0=\t"<<phr0<<std::endl;
+    std::cout<<"phr=\t"<<phr<<std::endl;
+    return 0;
+        
+    }
