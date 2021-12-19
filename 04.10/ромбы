@@ -1,0 +1,50 @@
+/*
+Написать программу, которая в консоли отображает m ромбов из символов звездочка '*' высоты (2n-1) звездочек. 
+*/
+
+#include <iostream>
+
+int main()
+{
+    int h,m;
+    do {
+        std::cout << "Input height: ";
+        std::cin >> h;
+    } while (h < 1);
+    do {
+        std::cout << "Input number: ";
+        std::cin >> m; 
+    } while (m < 1);
+
+    std::cout << std::endl;
+
+    for (int i = 1; i <= 2 * h; i += 2) {
+        for (int x = 0; x < m; ++x) {
+            for (int k = (2 * h - i) / 2; k >= 0; --k) {
+                std::cout << " ";
+            }
+            for (int j = 1; j <= i; ++j) {
+                std::cout << "*";
+            }
+            for (int t = (2 * h - i) / 2; t >= 0; --t) {
+                std::cout << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
+    
+        for (int i = 2 * h - 2; i > 0; i -= 2) {
+            for (int x = 0; x < m; ++x) {
+                for (int k = (2 * h - i) / 2; k >= 0; --k) {
+                    std::cout << " ";
+                }
+                for (int j = 1; j < i; ++j) {
+                    std::cout << "*";
+                }
+                for (int t = (2 * h - i) / 2; t >= 0; --t) {
+                    std::cout << " ";
+                }
+            }
+            std::cout << std::endl;
+        }
+}
