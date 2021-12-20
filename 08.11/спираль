@@ -1,0 +1,49 @@
+
+#include <iostream>
+
+int main()
+{   int n,m;
+    std::cout<<"input n: ";
+    std::cin>>n;
+    std::cout<<"input m: ";
+    std::cin>>m;
+    int num=1, c=0, k=0;
+    
+        int** M =new int* [n];
+	for (int i=0;i<n; ++i){
+		M[i]=new int [m];
+	}
+
+    while (num <n * m) {
+        for (int j=c; j<m-c; ++ j) {
+            if (M[c][j]==0){
+            M[c][j]= num;
+            ++ num; 
+        }}
+        ++c;
+    for (int i= k+1; i<n-k; ++ i) {
+        if(M[i][m-k-1]==0){
+            M[i][m-k-1]= num; 
+            ++ num; 
+        }}
+        ++k;
+    
+    for (int j=m-c-1; j>=c-1; --j) {
+        if( M[n-c][j]==0){
+            M[n-c][j]= num;
+            ++ num; 
+    }}
+    for (int i= n-k-1; i>=k; --i) {
+        if(M[i][k-1]==0){
+            M[i][k-1]= num; 
+            ++ num;
+    }}
+}
+for (int i=0; i<n; ++i){
+    for (int j=0; j<m; ++j){
+        std::cout<<M[i][j]<<" ";
+    }
+    std::cout<<std::endl;
+}
+    return 0;
+}
