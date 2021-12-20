@@ -1,0 +1,34 @@
+#include <iostream>
+ void shiftArray(int A[],int len,int k){
+    int digit;
+        std::cout<<std::endl;
+     while (k>0){
+        digit=A[0];
+        for (int i=0; i<len-1; ++i){
+            A[i]=A[i+1];
+        }
+        A[len-1]=digit;
+        --k;
+    }
+       for (int i=0; i<len; ++i){
+                std::cout<<A[i]<<" ";
+        }
+    
+}
+
+
+int main(){
+    int len, k;
+    std::cout<<"Input lenght:";
+    std::cin>>len;
+    std::cout<<"Input transition:";
+    std::cin>>k;
+    int A[len];
+        for (int i=0; i<len; ++i){
+                A[i]=i+1;
+                std::cout<<A[i]<<" ";
+        }
+    
+    shiftArray( A, len, k);
+    return 0;
+}
