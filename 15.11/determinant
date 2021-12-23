@@ -1,0 +1,44 @@
+#include <iostream>
+#include <time.h> 
+
+int main(){
+    int a;
+    std::cout<<"Input size of array:";
+    std::cin>>a;
+    double M[a][a];
+    srand(time(nullptr));
+    for (int i=0; i<a; ++i){
+        for (int j=0; j<a; ++j){
+            M[i][j] = rand() % 20 + 1;
+            std::cout<<M[i][j]<<"  ";
+        }
+        std::cout<<std::endl;
+    }
+    std::cout<<"--------------------------"<<std::endl;
+    
+    
+    double coef, det=1;
+    for (int i=0; i<a; ++i){
+        for (int j=0; j<a; ++j){
+            if ((i==j)&&(i!=a-1)&&(j!=a-1)){
+                det*=M[i][j];
+                for (int m=i+1; m<a; ++m){
+                    coef=M[m][j]/M[i][j];
+                    for (int n=j; n<a; ++n){
+                        M[m][n]-=coef*M[i][n];
+                    }
+                }
+            }
+        }
+    }
+    for (int i=0; i<a; ++i){
+        for (int j=0; j<a; ++j){
+            std::cout<<M[i][j]<<" ";
+        }
+        std::cout<<std::endl;
+    }
+    std::cout<<"______________________"<<std::endl;
+    det*=M[a-1][a-1];
+    std::cout<<"det= "<< det;
+    return 0;
+}
