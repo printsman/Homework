@@ -1,0 +1,80 @@
+
+#include <iostream>
+#include <time.h> 
+
+int main(){
+    int a;
+    std::cout<<"Input size of array:";
+    std::cin>>a;
+    double M[a][a];
+    double R[a][a];
+    srand(time(nullptr));
+    for (int i=0; i<a; ++i){
+        for (int j=0; j<a; ++j){
+            M[i][j] = rand() % 20 + 1;
+            std::cout<<M[i][j]<<" ";
+            if(i==j){
+                R[i][j]=1;
+            }else{
+                R[i][j]=0;
+            }
+        }
+            std::cout<<std::endl;
+        }
+    std::cout<<"--------------------------"<<std::endl;
+    
+    
+    double coef;
+    for (int i=0; i<a; ++i){
+        for (int j=0; j<a; ++j){
+            if ((i==j)&&(i!=a-1)&&(j!=a-1)){
+                for (int m=i+1; m<a; ++m){
+                    coef=M[m][j]/M[i][j];
+                    for (int n=j; n<a; ++n){
+                        M[m][n]-=coef*M[i][n];
+                        R[m][n]-=coef*R[i][n];
+                    }
+                }
+            }
+        }
+    }
+    for (int i=a-1; i>=0; --i){
+        for (int j=a-1; j>=0; --j){
+            if ((i==j)&&(i!=0)&&(j!=0)){
+                for (int m=i-1; m>=0; --m){
+                    coef=M[m][j]/M[i][j];
+                    for (int n=j; n>=0; --n){
+                        M[m][n]-=coef*M[i][n];
+                        R[m][n]-=coef*R[i][n];
+                    }
+                }
+            }
+        }
+    }
+    
+    for (int i=0; i<a; ++i){
+        for (int j=0; j<a; ++j){
+            if (i==j){
+                for(int x=0; x<a; ++x){
+                    R[i][x]/=M[i][j];
+                }
+            }
+        }    
+    }
+    
+    for (int i=0; i<a; ++i){
+    for (int j=0; j<a; ++j){
+    std::cout<<M[i][j]<<" ";
+    }
+    std::cout<<std::endl;
+    }
+    std::cout<<"______________________"<<std::endl;
+    for (int i=0; i<a; ++i){
+    for (int j=0; j<a; ++j){
+    std::cout<<R[i][j]<<" ";
+    }
+    std::cout<<std::endl;
+    }
+
+    return 0;
+}
